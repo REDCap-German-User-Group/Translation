@@ -1,0 +1,34 @@
+{
+    "version": "12.0.5",
+    "strings": {
+        "config_01": {
+            "hash": "343434343",
+            "new": true,
+            "changed": false,
+            "html": null,
+            "interpolated": null,
+            "length-restricted": "70px",
+            "text": "Original English text",
+            "source-locations": [
+                {
+                    "file": "xy.php",
+                    "line": 17,
+                    "new": false,
+                    "source-context": "hash von inkl zeile davor + danach",
+                    "new-context": true
+                }
+            ],
+            "urls": [
+                "/DataEntry/index.php?route=XYController&action=display ????????????????"
+            ]
+            
+
+        }
+    },
+    "new-strings": [
+        "key"
+    ],
+    "removed-strings": [
+        "key"
+    ]
+}
