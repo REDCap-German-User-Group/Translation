@@ -1,6 +1,24 @@
 {
-    "config_01": {
-        "for": "hash",
-        "translation": "Deutscher Text"
+    "name": "German",
+    "localized-name": "Deutsch",
+    "iso": "de-DE",
+    "timestamp": "2022-09-15 14:22:11",
+    "maintainers": [
+        {
+            "name": "Günther Rezniczek",
+            "email": "guenther.rezniczek@rub.de",
+            "institution": "Ruhr-Universität Bochum"
+        }
+    ],
+    "url": "https://...",
+    "strings": {
+        "config_01": {
+            "do-not-translate": false,
+            "translations": {
+                "hash1": "Deutscher Text",
+                "hash2": "Deutscher Text einer Vorversion"
+            },
+            "annotation": "Optional"
+        }
     }
 }
