@@ -17,8 +17,10 @@
             "translations": {
                 "hash1": "Deutscher Text",
                 "hash2": "Deutscher Text einer Vorversion"
-            },
-            "annotation": "Optional"
+            }
         }
+    },
+    "annotations": {
+        "config_01": "Optional"
     }
 }
