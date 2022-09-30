@@ -1,0 +1,34 @@
+{
+    "version": "12.5.10",
+    "based-on": "",
+    "generator": {
+        "name": "REDCap Translation Assistant",
+        "version": "v9.9.9",
+        "author": "Dr. Günther Rezniczek",
+        "url": "https:\/\/github.com\/grezniczek\/redcap_translator"
+    },
+    "timestamp": "2022-09-30 11:37:27",
+    "strings": {
+        "key": {
+            "text": "Text",
+            "annotation": "",
+            "hash": "3a52ce",
+            "new": false,
+            "changed": false,
+            "html": false,
+            "interpolated": 0,
+            "length-restricted": null
+        }
+    },
+    "new-strings": [],
+    "removed-strings": [],
+    "unused-strings": [],
+    "missing-strings": [],
+    "stats": {
+        "n-strings": 10750,
+        "n-new-strings": 0,
+        "n-removed-strings": 0,
+        "n-unused-strings": 0,
+        "n-missing-strings": 0
+    }
+}
