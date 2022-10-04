@@ -14,13 +14,21 @@
     "strings": {
         "config_01": {
             "do-not-translate": false,
+            "annotation": "text",
             "translations": {
                 "hash1": "Deutscher Text",
                 "hash2": "Deutscher Text einer Vorversion"
             }
         }
     },
-    "annotations": {
-        "config_01": "Optional"
+    "help-content": {
+        "title-hash": {
+            "question": {
+                "hash": "Text"
+            },
+            "answer": {
+                "hash": "Text"
+            }
+        }
     }
 }
