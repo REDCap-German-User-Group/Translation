@@ -1,5 +1,9 @@
 # Übersetzungsregeln / Guidelines
 
+Diese Regeln sind nicht notwendiger Weise auf die Deutsche Community limitiert.
+Es sollte wohl eine breitere Community Diskussion angestoßen werden, ob manche Begriffe Sprachen-übergreifend nicht oder auf eine bestimmte Art übersetzt werden, um möglichst große Harmonisierung zu erreichen.
+
+
 ## Allgemein
 
 - Allgemein immer versuchen, eine Übersetzung (ein Wort) zu finden, das das englische Original erahnen lässt.
@@ -49,6 +53,9 @@ _"Here, you can ..."_ soll immer förmlich ("Sie") übersetzt werden. Gegebenenf
 Vermeiden. Generisches Maskulin. Kürzer und einfacher zu lesen/verstehen.
 
 ## Dinge, die NICHT übersetzt werden sollten
+
+_Nicht notwendiger Weise limitiert auf Deutsch - Community Diskussion, ob manche Begriffe übergreifend nicht oder auf bestimmte Art übersetzt werden, um möglichst große Harmonisierung zu erreichen._
+
 
 - REDCap-spezifische Fachbegriffe (wie z.B. Action Tags, Smart Variables, Piping)
 - (Technische) Fehlermeldungen, insbesondere API, die nicht für Endbenutzer intendiert sind. Beibehaltung des Englischen erleichtert die internationale Kommunikation (Hilfestellung auf der Community Site; Bug Reports).
