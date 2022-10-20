@@ -9,7 +9,8 @@
     },
     "timestamp": "2022-09-30 11:37:27",
     "strings": {
-        "key": {
+        "key_xy": {
+            "key": "key_xy",
             "text": "Text",
             "annotation": "",
             "hash": "3a52ce",

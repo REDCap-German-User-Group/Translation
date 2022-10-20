@@ -1,0 +1,35 @@
+{
+    "name": "German",
+    "localized-name": "Deutsch",
+    "iso": "de-DE",
+    "timestamp": "2022-09-15 14:22:11",
+    "maintained-by": [
+        {
+            "name": "Günther Rezniczek",
+            "email": "guenther.rezniczek@rub.de",
+            "institution": "Ruhr-Universität Bochum"
+        }
+    ],
+    "url": "https://...",
+    "strings": {
+        "config_01": {
+            "key": "config_01",
+            "do-not-translate": false,
+            "annotation": "text",
+            "translations": {
+                "hash1": "Deutscher Text",
+                "hash2": "Deutscher Text einer Vorversion"
+            }
+        }
+    },
+    "help-content": {
+        "title-hash": {
+            "question": {
+                "hash": "Text"
+            },
+            "answer": {
+                "hash": "Text"
+            }
+        }
+    }
+}
