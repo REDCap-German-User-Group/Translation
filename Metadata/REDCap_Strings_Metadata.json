@@ -16,7 +16,8 @@
             "hash": "3a52ce",
             "new": false,
             "changed": false,
-            "html": false,
+            "split": "Split string? true | false",
+            "html": "Supports HTML? null | true | false",
             "length-restricted": null,
             "interpolated": 0,
             "interpolation-hints": [
