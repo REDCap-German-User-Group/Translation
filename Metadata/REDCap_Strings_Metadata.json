@@ -17,8 +17,14 @@
             "new": false,
             "changed": false,
             "html": false,
+            "length-restricted": null,
             "interpolated": 0,
-            "length-restricted": null
+            "interpolation-hints": [
+                {
+                    "id": "0",
+                    "hint": "Text"
+                }
+            ]
         }
     },
     "new-strings": [],
