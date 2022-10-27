@@ -16,6 +16,7 @@
             "hash": "3a52ce",
             "new": false,
             "changed": false,
+            "translate": "Should this be translated? Default = true. true | false",
             "split": "Split string? true | false",
             "html": "Supports HTML? null | true | false",
             "length-restricted": null,
