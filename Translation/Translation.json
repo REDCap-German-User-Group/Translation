@@ -10,15 +10,15 @@
             "institution": "Ruhr-Universität Bochum"
         }
     ],
-    "url": "https://...",
+    "url": "URL where (a public version of) this file is maintained at: https://...",
     "strings": {
         "config_01": {
             "key": "config_01",
-            "do-not-translate": false,
-            "annotation": "text",
+            "do-not-translate": "Flag indicating that this string should not be translated. true | false",
+            "annotation": "Some annotation.",
             "translations": {
-                "hash1": "Deutscher Text",
-                "hash2": "Deutscher Text einer Vorversion"
+                "hash1": "Translated text (corresponding to one version of REDCap)",
+                "hash2": "Translated text (corresponding to another version of REDCap)"
             }
         }
     },
