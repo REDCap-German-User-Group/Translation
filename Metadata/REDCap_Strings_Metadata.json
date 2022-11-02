@@ -12,15 +12,15 @@
         "key_xy": {
             "key": "key_xy",
             "text": "Text",
-            "annotation": "",
-            "hash": "3a52ce",
-            "new": false,
+            "annotation": "Some annotation about this string.",
+            "hash": "A hash value corresponding to the original string",
+            "new": "New since last (based-on) version? true | false",
             "changed": false,
             "translate": "Should this be translated? Default = true. true | false",
             "split": "Split string? true | false",
             "html": "Supports HTML? null | true | false",
-            "length-restricted": null,
-            "interpolated": 0,
+            "length-restricted": "Any length restriction to observe? null | true | false | Nubmer (of pixels)",
+            "interpolated": 1,
             "interpolation-hints": [
                 {
                     "id": "0",
@@ -41,3 +41,4 @@
         "n-missing-strings": 0
     }
 }
+
