@@ -18,9 +18,9 @@ Es sollte wohl eine breitere Community Diskussion angestoßen werden, ob manche 
 - Codebook = Codebook
 - Control Center = Control Center
 - Data Access Group = Zugriffsgruppe
-- Data Entry Form = Eingabemaske / Eingabeformular / Formular?
+- Data Entry Form = Eingabeformular
 - E-signature = E-Signatur
-- Event = Event? Zeitpunkt? Visite? Ereignis?
+- Event = Event
 - Field Embedding = Feldeinbettung
 - File Repository = Datei-Repository
 - Form = Formular
@@ -32,8 +32,8 @@ Es sollte wohl eine breitere Community Diskussion angestoßen werden, ob manche 
 - Playground = Spielwiese
 - Project = Projekt
 - Project Dashboard = Projekt-Dashboard
-- Project Home and Design = ?????
-- Project Home = Startseite?
+- Project Home and Design = Projektverwaltung
+- Project Home = Startseite
 - Record = Datensatz
 - Report = Report (bisher: Berichte)
 - Signature = Unterschrift
@@ -41,7 +41,7 @@ Es sollte wohl eine breitere Community Diskussion angestoßen werden, ob manche 
 - Survey = Kontextabhängig: Fragebogen (konkretes einzelnes Instrument) / Umfrage (Akt des Umfrage-Durchführens)
 - Tool = Tool (immer mit Bindestrich, z.B. Datenimport-Tool) oder weglassen (Datenimport, Datenvergleich)
 - Tutorials = Tutorials
-- User = Nutzer / Benutzer ?
+- User = Benutzer
 
 
 ## Anrede
