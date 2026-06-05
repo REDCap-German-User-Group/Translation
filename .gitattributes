@@ -5,5 +5,6 @@ EM.code-workspace export-ignore
 Metadata/ export-ignore
 Rules/ export-ignore
 Todo/ export-ignore
+Tools/ export-ignore
 Translation/Translation.json export-ignore
 AGENTS.md export-ignore
