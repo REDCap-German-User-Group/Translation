@@ -1,3 +1,4 @@
-# Translation
+# German.ini
 
-Deutsche Übersetzung der REDCap Benutzeroberfläche
+KI-assistierte deutsche Übersetzung der REDCap Benutzeroberfläche
+

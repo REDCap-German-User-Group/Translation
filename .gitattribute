@@ -1,0 +1,9 @@
+/.vscode export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore
+EM.code-workspace export-ignore
+Metadata/ export-ignore
+Rules/ export-ignore
+Todo/ export-ignore
+Translation/Translation.json export-ignore
+AGENTS.md export-ignore
