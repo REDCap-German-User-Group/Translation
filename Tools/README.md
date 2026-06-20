@@ -22,6 +22,23 @@ Aufruf, wenn das aktuelle Verzeichnis das Repository-Root ist:
 php Tools/check_language_file.php Translation/German.ini
 ```
 
+## validate_language_file.html
+
+Autor: **Günther Rezniczek**
+
+Eigenständige HTML-Datei zur Prüfung eines Language Files direkt im Browser. Die
+Datei benötigt keinen Webserver und keine JavaScript-Bibliotheken. Sie kann lokal
+geöffnet werden und validiert per eingebettetem JavaScript eine bewusst enge REDCap-
+Language-File-Syntax: flache `key = "value"` Einträge, mehrzeilige Werte,
+escaped Quotes und den in REDCap-Dateien vorkommenden doppelten Quote-Stil.
+
+Die Prüfung ist konservativ: Dateien, die erfolgreich validiert werden, sollen durch
+PHPs `parse_ini_file()` parsbar sein. Nicht jede allgemein gültige INI-Datei wird
+akzeptiert.
+
+Aufruf: `Tools/validate_language_file.html` lokal im Browser öffnen und eine
+`.ini` Datei auswählen oder Text einfügen.
+
 ## REDCap Translation Assistant EM
 
 Autor: **Günther Rezniczek**

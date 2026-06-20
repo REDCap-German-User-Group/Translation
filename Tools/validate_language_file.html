@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>REDCap Language File Validator</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --background: #f7f8fa;
+            --panel: #ffffff;
+            --text: #20242a;
+            --muted: #647184;
+            --border: #d7dce3;
+            --accent: #1f6feb;
+            --accent-dark: #1959be;
+            --error: #b42318;
+            --error-bg: #fff1f0;
+            --ok: #17663a;
+            --ok-bg: #eaf7ef;
+            --warn: #8a5a00;
+            --warn-bg: #fff7df;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 16px;
+            line-height: 1.45;
+        }
+
+        main {
+            width: min(1040px, calc(100% - 32px));
+            margin: 32px auto;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+            line-height: 1.2;
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: var(--muted);
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 650;
+        }
+
+        input[type="file"] {
+            max-width: 100%;
+        }
+
+        button {
+            appearance: none;
+            border: 1px solid var(--accent);
+            background: var(--accent);
+            color: #ffffff;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font: inherit;
+            font-weight: 650;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--accent-dark);
+        }
+
+        button.secondary {
+            background: #ffffff;
+            color: var(--accent);
+        }
+
+        button.secondary:hover {
+            background: #eef5ff;
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            min-height: 180px;
+            resize: vertical;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 10px;
+            font: 14px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+        }
+
+        .status {
+            border-radius: 6px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: #ffffff;
+            font-weight: 650;
+        }
+
+        .status.ok {
+            color: var(--ok);
+            border-color: #b8e3c7;
+            background: var(--ok-bg);
+        }
+
+        .status.error {
+            color: var(--error);
+            border-color: #ffd0cc;
+            background: var(--error-bg);
+        }
+
+        .summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .metric {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px 10px;
+            background: #ffffff;
+        }
+
+        .metric strong {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .messages {
+            margin: 14px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .messages li {
+            border-left: 4px solid var(--border);
+            background: #ffffff;
+            padding: 8px 10px;
+            margin-top: 8px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+            font-size: 0.92rem;
+            white-space: pre-wrap;
+        }
+
+        .messages li.error {
+            border-left-color: var(--error);
+            background: var(--error-bg);
+        }
+
+        .messages li.warning {
+            border-left-color: var(--warn);
+            background: var(--warn-bg);
+        }
+
+        .drop-zone {
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .drop-zone.dragging {
+            border-color: var(--accent);
+            background: #eef5ff;
+            color: var(--text);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <h1>REDCap Language File Validator</h1>
+    <p>
+        This page runs entirely in your browser. It accepts the REDCap language-file
+        subset used by these files and is intentionally stricter than general INI syntax.
+    </p>
+
+    <section class="panel">
+        <label for="file-input">Choose a language .ini file</label>
+        <div class="controls">
+            <input id="file-input" type="file" accept=".ini,text/plain">
+            <button id="clear-button" type="button" class="secondary">Clear</button>
+        </div>
+        <div id="drop-zone" class="drop-zone" style="margin-top: 14px;">
+            Drop a REDCap language .ini file here
+        </div>
+    </section>
+
+    <section class="panel">
+        <label for="paste-input">Or paste language-file text</label>
+        <textarea id="paste-input" spellcheck="false" placeholder='global_01 = "ERROR"'></textarea>
+        <div class="controls" style="margin-top: 10px;">
+            <button id="validate-paste-button" type="button">Validate Pasted Text</button>
+        </div>
+    </section>
+
+    <section id="result-panel" class="panel hidden" aria-live="polite">
+        <div id="status" class="status"></div>
+        <div id="summary" class="summary"></div>
+        <ul id="messages" class="messages"></ul>
+    </section>
+</main>
+
+<script>
+(function () {
+    'use strict';
+
+    var KEY_LINE_RE = /^([A-Za-z0-9_.:-]+)[ \t]*=[ \t]*(.*)$/;
+    var INDENTED_KEY_RE = /^[ \t]+[A-Za-z0-9_.:-]+[ \t]*=/;
+
+    function validateRedcapLanguageFile(text) {
+        var normalized = String(text).replace(/\r\n?/g, '\n');
+        var lines = normalized.split('\n');
+        var errors = [];
+        var warnings = [];
+        var entries = [];
+        var seen = Object.create(null);
+        var active = null;
+        var i;
+
+        for (i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var lineNumber = i + 1;
+
+            if (active !== null) {
+                var continued = parseValueText(line, active.inQuote, lineNumber, active.key);
+                if (continued.error !== null) {
+                    errors.push(continued.error);
+                }
+                active.inQuote = continued.inQuote;
+                if (!active.inQuote) {
+                    active = null;
+                }
+                continue;
+            }
+
+            if (/^[ \t]*$/.test(line) || /^[ \t]*[;#]/.test(line)) {
+                continue;
+            }
+
+            if (/^[ \t]*\[/.test(line)) {
+                errors.push(makeMessage(
+                    'Sections are not allowed in REDCap language files.',
+                    lineNumber,
+                    1,
+                    null
+                ));
+                continue;
+            }
+
+            if (INDENTED_KEY_RE.test(line)) {
+                errors.push(makeMessage(
+                    'Language keys must start in column 1.',
+                    lineNumber,
+                    firstNonWhitespaceColumn(line),
+                    null
+                ));
+                continue;
+            }
+
+            var match = KEY_LINE_RE.exec(line);
+            if (match === null) {
+                errors.push(makeMessage(
+                    'Expected a blank line, comment, or key = "value" entry.',
+                    lineNumber,
+                    1,
+                    null
+                ));
+                continue;
+            }
+
+            var key = match[1];
+            var valueText = match[2];
+            entries.push({ key: key, line: lineNumber });
+
+            if (Object.prototype.hasOwnProperty.call(seen, key)) {
+                warnings.push(makeMessage(
+                    'Duplicate key "' + key + '"; PHP keeps the last value.',
+                    lineNumber,
+                    1,
+                    key
+                ));
+            } else {
+                seen[key] = lineNumber;
+            }
+
+            if (valueText.charAt(0) !== '"') {
+                errors.push(makeMessage(
+                    'Value for "' + key + '" must start with a double quote.',
+                    lineNumber,
+                    valueColumn(line, valueText),
+                    key
+                ));
+                continue;
+            }
+
+            var parsed = parseValueText(valueText, false, lineNumber, key);
+            if (parsed.error !== null) {
+                errors.push(parsed.error);
+            }
+            if (parsed.inQuote) {
+                active = { key: key, line: lineNumber, inQuote: true };
+            }
+        }
+
+        if (active !== null) {
+            errors.push(makeMessage(
+                'Unclosed quoted value that started at key "' + active.key + '".',
+                active.line,
+                1,
+                active.key
+            ));
+        }
+
+        return {
+            ok: errors.length === 0,
+            lineCount: lines.length,
+            entryCount: entries.length,
+            entries: entries,
+            errors: errors,
+            warnings: warnings
+        };
+    }
+
+    function parseValueText(text, inQuote, lineNumber, key) {
+        var i;
+
+        for (i = 0; i < text.length; i++) {
+            var ch = text.charAt(i);
+
+            if (inQuote) {
+                if (isInvalidControlCharacter(text, i)) {
+                    return {
+                        inQuote: inQuote,
+                        error: makeMessage(
+                            'Control character inside quotes is not allowed.',
+                            lineNumber,
+                            i + 1,
+                            key
+                        )
+                    };
+                }
+                if (ch === '\\' && i + 1 < text.length) {
+                    i++;
+                    continue;
+                }
+                if (ch === '"') {
+                    inQuote = false;
+                }
+                continue;
+            }
+
+            if (ch === ';') {
+                return { inQuote: false, error: null };
+            }
+
+            if (ch === '"') {
+                inQuote = true;
+                continue;
+            }
+
+            if (isInvalidControlCharacter(text, i)) {
+                return {
+                    inQuote: inQuote,
+                    error: makeMessage(
+                        'Control character outside quotes is not allowed.',
+                        lineNumber,
+                        i + 1,
+                        key
+                    )
+                };
+            }
+
+            if (isReservedOutsideQuote(ch)) {
+                return {
+                    inQuote: inQuote,
+                    error: makeMessage(
+                        'Character "' + printableCharacter(ch) + '" is not allowed outside quotes; keep it inside a quoted segment.',
+                        lineNumber,
+                        i + 1,
+                        key
+                    )
+                };
+            }
+        }
+
+        return { inQuote: inQuote, error: null };
+    }
+
+    function isReservedOutsideQuote(ch) {
+        return '=|&~!()'.indexOf(ch) !== -1;
+    }
+
+    function isInvalidControlCharacter(text, index) {
+        var code = text.charCodeAt(index);
+        return code < 32 && code !== 9;
+    }
+
+    function printableCharacter(ch) {
+        if (ch === '\t') {
+            return '\\t';
+        }
+        return ch;
+    }
+
+    function firstNonWhitespaceColumn(line) {
+        var match = /[^ \t]/.exec(line);
+        return match === null ? 1 : match.index + 1;
+    }
+
+    function valueColumn(line, valueText) {
+        return line.length - valueText.length + 1;
+    }
+
+    function makeMessage(message, line, column, key) {
+        return {
+            message: message,
+            line: line,
+            column: column,
+            key: key
+        };
+    }
+
+    function readFileAsText(file, onSuccess, onError) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            onSuccess(String(reader.result || ''));
+        };
+        reader.onerror = function () {
+            onError(reader.error || new Error('Unable to read file.'));
+        };
+        reader.readAsText(file, 'UTF-8');
+    }
+
+    function initUi() {
+        var fileInput = document.getElementById('file-input');
+        var pasteInput = document.getElementById('paste-input');
+        var validatePasteButton = document.getElementById('validate-paste-button');
+        var clearButton = document.getElementById('clear-button');
+        var dropZone = document.getElementById('drop-zone');
+
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files && fileInput.files.length > 0) {
+                validateFile(fileInput.files[0]);
+            }
+        });
+
+        validatePasteButton.addEventListener('click', function () {
+            renderResult(validateRedcapLanguageFile(pasteInput.value), 'Pasted text');
+        });
+
+        clearButton.addEventListener('click', function () {
+            fileInput.value = '';
+            pasteInput.value = '';
+            hideResult();
+        });
+
+        dropZone.addEventListener('dragover', function (event) {
+            event.preventDefault();
+            dropZone.className = 'drop-zone dragging';
+        });
+
+        dropZone.addEventListener('dragleave', function () {
+            dropZone.className = 'drop-zone';
+        });
+
+        dropZone.addEventListener('drop', function (event) {
+            event.preventDefault();
+            dropZone.className = 'drop-zone';
+            if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+                validateFile(event.dataTransfer.files[0]);
+            }
+        });
+    }
+
+    function validateFile(file) {
+        readFileAsText(file, function (text) {
+            renderResult(validateRedcapLanguageFile(text), file.name);
+        }, function (error) {
+            renderResult({
+                ok: false,
+                lineCount: 0,
+                entryCount: 0,
+                errors: [makeMessage(error.message || String(error), 1, 1, null)],
+                warnings: []
+            }, file.name);
+        });
+    }
+
+    function hideResult() {
+        document.getElementById('result-panel').className = 'panel hidden';
+    }
+
+    function renderResult(result, label) {
+        var resultPanel = document.getElementById('result-panel');
+        var status = document.getElementById('status');
+        var summary = document.getElementById('summary');
+        var messages = document.getElementById('messages');
+
+        resultPanel.className = 'panel';
+        status.className = result.ok ? 'status ok' : 'status error';
+        status.textContent = result.ok
+            ? 'OK: ' + label + ' passed the REDCap language-file validation.'
+            : 'Invalid: ' + label + ' did not pass validation.';
+
+        summary.innerHTML = '';
+        appendMetric(summary, 'Lines', result.lineCount);
+        appendMetric(summary, 'Entries', result.entryCount);
+        appendMetric(summary, 'Errors', result.errors.length);
+        appendMetric(summary, 'Warnings', result.warnings.length);
+
+        messages.innerHTML = '';
+        appendMessages(messages, result.errors, 'error');
+        appendMessages(messages, result.warnings, 'warning');
+    }
+
+    function appendMetric(container, label, value) {
+        var item = document.createElement('div');
+        item.className = 'metric';
+        var strong = document.createElement('strong');
+        strong.textContent = label;
+        item.appendChild(strong);
+        item.appendChild(document.createTextNode(String(value)));
+        container.appendChild(item);
+    }
+
+    function appendMessages(container, messages, type) {
+        var i;
+        for (i = 0; i < messages.length; i++) {
+            var message = messages[i];
+            var item = document.createElement('li');
+            item.className = type;
+            item.textContent = 'Line ' + message.line + ', column ' + message.column + ': ' + message.message;
+            container.appendChild(item);
+        }
+    }
+
+    window.RedcapLanguageFileValidator = {
+        validate: validateRedcapLanguageFile
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initUi);
+    } else {
+        initUi();
+    }
+}());
+</script>
+</body>
+</html>
