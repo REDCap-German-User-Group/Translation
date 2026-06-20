@@ -7,6 +7,21 @@ Autor: **Christof Meigen**
 PHP Skript, das aus einem englischen und einem anderen (deutschen) Language File ein
 neues Language-File zu Debug-Zwecken erzeugt, das die (deutschen) Texte anzeigt, aber ein rotes Fragezeichen voranstellt, das als Hover-Effekt den Schlüsselwert und den englischen Originaltext anzeigt.
 
+## check_language_file.php
+
+Autor: **Günther Rezniczek**
+
+PHP Skript zur Prüfung eines Language Files. Bei einer erfolgreich parsbaren Datei
+wird die Anzahl der Einträge ausgegeben. Wenn die Datei nicht geparst werden kann,
+wird der letzte erfolgreich gelesene Schlüssel ausgegeben, um die fehlerhafte Stelle
+leichter einzugrenzen.
+
+Aufruf, wenn das aktuelle Verzeichnis das Repository-Root ist:
+
+```bash
+php Tools/check_language_file.php Translation/German.ini
+```
+
 ## REDCap Translation Assistant EM
 
 Autor: **Günther Rezniczek**
