@@ -2,7 +2,7 @@
 
 Following the translation rules given in [German.md](../German.md), translate the content of the file [English_NEW.ini](../English_NEW.ini) into German. The target should be a new file called `German_NEW.ini` and save it in the same directory as `English_NEW.ini`.
 
-If you need to consult on previous translations in order to remain consistent, you can inspect the full [German.ini](../Translation/German.ini) or full [English.ini](English.ini) files.
+If you need to consult on previous translations in order to remain consistent, you can inspect the full [German.ini](../Translation/German.ini) file.
 
 Afterwards, fold the new translations into the main [German.ini](../Translation/German.ini) file such that the newly added language keys are inserted in the proper place, i.e., first by prefix (may contain multiple parts separated by underscores), then according to regular numberical ordering, or alphabetical ordering if the last part of a key is not numerica.
 
