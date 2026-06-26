@@ -4,7 +4,7 @@ Following the translation rules given in [German.md](../German.md), translate th
 
 If you need to consult on previous translations in order to remain consistent, you can inspect the full [German.ini](../Translation/German.ini) file.
 
-Afterwards, fold the new translations into the main [German.ini](../Translation/German.ini) file such that the newly added language keys are inserted in the proper place, i.e., first by prefix (may contain multiple parts separated by underscores), then according to regular numberical ordering, or alphabetical ordering if the last part of a key is not numerica.
+Afterwards, fold the new translations into the main [German.ini](../Translation/German.ini) file such that the newly added language keys are inserted in the proper place, i.e., first by prefix (may contain multiple parts separated by underscores), then according to regular numberical ordering, or alphabetical ordering if the last part of a key is not numerica. Make sure that there are no duplicate keys.
 
 Finally, ensure that the new full [German.ini](../Translation/German.ini) file can be parsed by PHP. This can be done by using the [check_language_file.php](../check_language_file.php) script. Call it like this (assuming the current directory is the repository root):
 
