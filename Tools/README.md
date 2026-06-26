@@ -22,6 +22,30 @@ Aufruf, wenn das aktuelle Verzeichnis das Repository-Root ist:
 php Tools/check_language_file.php Translation/German.ini
 ```
 
+## merge_language_file.php
+
+Autor: **Günther Rezniczek**
+
+PHP Skript zum Einfügen neuer Übersetzungen in ein bestehendes Language File.
+Bereits vorhandene Schlüssel werden ersetzt, fehlende Schlüssel werden in der Nähe
+passender vorhandener Schlüssel eingefügt. Die Sortierung berücksichtigt
+Unterstrich-getrennte Schlüsselbestandteile und numerische Suffixe numerisch
+(`prefix_9` vor `prefix_10`). Nach dem Merge wird geprüft, ob die erzeugte Datei
+durch PHP parsbar ist.
+
+Aufruf, wenn das aktuelle Verzeichnis das Repository-Root ist:
+
+```bash
+php Tools/merge_language_file.php Todo/German_NEW.ini Translation/German.ini
+```
+
+Mit `--dry-run` kann geprüft werden, wie viele Schlüssel eingefügt bzw. ersetzt
+würden, ohne die Zieldatei zu schreiben:
+
+```bash
+php Tools/merge_language_file.php Todo/German_NEW.ini Translation/German.ini --dry-run
+```
+
 ## validate_language_file.html
 
 Autor: **Günther Rezniczek**
