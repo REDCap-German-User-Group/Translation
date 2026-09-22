@@ -17,6 +17,16 @@ Für einen anderen Host kann beim Abruf `--endpoint URL` verwendet werden. Das v
 
 `check_translation_batch.php` prüft vor dem Merge, ob alle abgerufenen englischen Schlüssel in `German_NEW.ini` vorhanden sind und Platzhalter sowie Action Tags erhalten blieben.
 
+## prepare_upload.php
+
+Autor: **Günther Rezniczek & ChatGPT/Codex**
+
+`prepare_upload.php` liest die gemeinsamen Einreichungsdaten aus [UPLOAD.md](../UPLOAD.md) und E-Mail/Institutions-ID aus der ignorierten lokalen Datei `UPLOAD.local.ini`. Beim ersten Einsatz muss `UPLOAD.local.ini.example` nach `UPLOAD.local.ini` kopiert und ausgefüllt werden. Das Skript ergänzt die angegebene REDCap-Version und erstellt die ebenfalls ignorierte lokale Datei `UPLOAD.html`. Diese enthält einen korrekt URL-kodierten Link zum vorausgefüllten REDCap-Einreichungsformular. CAPTCHA, Datei-Upload, Prüfung und Absenden erfolgen weiterhin manuell.
+
+```bash
+php Tools/prepare_upload.php 17.5.0
+```
+
 ## create_debug_file.php
 
 Autor: **Christof Meigen**

@@ -1,0 +1,3 @@
+; Copy this file to UPLOAD.local.ini and enter the local submission details.
+translator_email = ""
+lead_site = ""
