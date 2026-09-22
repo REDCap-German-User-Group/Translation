@@ -11,14 +11,14 @@ try {
 	$version = $argv[1];
 	languageUpdaterVersion($version);
 	$options = languageUpdaterOptions(array_slice($argv, 2), array('--metadata', '--local-config', '--output'));
-	$metadataFile = $options['--metadata'] ?? "$root/UPLOAD.md";
+	$metadataFile = $options['--metadata'] ?? "$root/LANGUAGE_LIBRARY.md";
 	$localConfigFile = $options['--local-config'] ?? "$root/UPLOAD.local.ini";
-	$output = $options['--output'] ?? "$root/UPLOAD.html";
+	$output = $options['--output'] ?? "$root/UPLOAD.local.md";
 	$contents = @file_get_contents($metadataFile);
 	if ($contents === false) throw new RuntimeException("Unable to read $metadataFile.");
 
 	if (!preg_match('/^Upload Survey:\s*(https:\/\/\S+)\s*$/m', $contents, $surveyMatch)) {
-		throw new RuntimeException('UPLOAD.md has no valid HTTPS upload survey URL.');
+		throw new RuntimeException('LANGUAGE_LIBRARY.md has no valid HTTPS upload survey URL.');
 	}
 	$labels = array(
 		'language' => 'Language',
@@ -30,7 +30,7 @@ try {
 	foreach ($labels as $parameter => $label) {
 		$pattern = '/^' . preg_quote($label, '/') . ':\s*`([^`]*)`(?:\s+\([^\r\n]*\))?\s*$/m';
 		if (!preg_match($pattern, $contents, $match) || $match[1] === '') {
-			throw new RuntimeException("UPLOAD.md has no value for $label.");
+			throw new RuntimeException("LANGUAGE_LIBRARY.md has no value for $label.");
 		}
 		$params[$parameter] = $match[1];
 	}
@@ -62,31 +62,21 @@ try {
 	}
 	$query = array_merge(array('s' => $baseQuery['s'], 'version' => $version), $params);
 	$url = $parts['scheme'] . '://' . $parts['host'] . ($parts['path'] ?? '/') . '?' . http_build_query($query, '', '&', PHP_QUERY_RFC3986);
-	$escapedUrl = htmlspecialchars($url, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-	$escapedVersion = htmlspecialchars($version, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 	$archive = "German_$version.zip";
-	$escapedArchive = htmlspecialchars($archive, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
-	$html = <<<HTML
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Upload German $escapedVersion</title>
-</head>
-<body>
-<h1>Upload German $escapedVersion</h1>
-<p><a href="$escapedUrl" target="_blank" rel="noopener noreferrer">Open the prefilled REDCap submission survey</a></p>
-<ol>
-<li>Complete the CAPTCHA and open the survey.</li>
-<li>Upload <code>$escapedArchive</code>.</li>
-<li>Review the prefilled values and submit the survey manually.</li>
-</ol>
-<details><summary>Prefilled URL</summary><p><code>$escapedUrl</code></p></details>
-</body>
-</html>
-HTML;
-	languageUpdaterWrite($output, $html . "\n");
+	$markdown = <<<MARKDOWN
+# Upload German $version
+
+[Open the prefilled REDCap submission survey]($url)
+
+1. Complete the CAPTCHA and open the survey.
+2. Upload `$archive`.
+3. Review the prefilled values and submit the survey manually.
+
+## Prefilled URL
+
+<$url>
+MARKDOWN;
+	languageUpdaterWrite($output, $markdown . "\n");
 	echo "Prepared $output for REDCap $version.\n";
 } catch (Throwable $e) {
 	fwrite(STDERR, $e->getMessage() . "\n");
