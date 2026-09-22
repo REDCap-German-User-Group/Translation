@@ -54,4 +54,4 @@ jobs:
           gh release create "$GITHUB_REF_NAME" "release-assets/German.zip#German $VERSION" \
             --verify-tag \
             --title "German $VERSION" \
-            --notes "German translation for REDCap $VERSION"
+            --notes "German translations for REDCap $VERSION"
