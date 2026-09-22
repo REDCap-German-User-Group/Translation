@@ -37,7 +37,7 @@ jobs:
           [[ -s README.md ]] || fail "Missing release file" "README.md is missing or empty."
           [[ -s Translation/German.ini ]] || fail "Missing release file" "Translation/German.ini is missing or empty."
           echo "VERSION=$version" >> "$GITHUB_ENV"
-      - name: Create release with two assets
+      - name: Create release archive
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -46,7 +46,12 @@ jobs:
           mkdir -p release-assets
           cp README.md release-assets/README.md
           cp Translation/German.ini release-assets/German.ini
-          gh release create "$GITHUB_REF_NAME" release-assets/README.md release-assets/German.ini \
+          (
+            cd release-assets
+            zip -q German.zip README.md German.ini
+            rm README.md German.ini
+          )
+          gh release create "$GITHUB_REF_NAME" "release-assets/German.zip#German $VERSION" \
             --verify-tag \
             --title "German $VERSION" \
             --notes "German translation for REDCap $VERSION"

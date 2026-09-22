@@ -26,4 +26,4 @@ Run this workflow when asked, for example: **“Please execute TRANSLATE.md for 
    php Tools/check_language_file.php Translation/German.ini
    ```
 
-5. Review `git diff -- Translation/German.ini Todo/English_NEW.ini Todo/German_NEW.ini`. Commit the finished translation. When it is ready to publish, create and push a tag such as `v17.5.0` on that commit. A [GitHub Actions workflow](.github/workflows/release.yml) checks the header version and creates the GitHub release with only `README.md` and `German.ini` as uploaded assets. Existing bare version tags are historical and need no changes.
+5. Review `git diff -- Translation/German.ini Todo/English_NEW.ini Todo/German_NEW.ini`. Commit the finished translation. When it is ready to publish, create and push a tag such as `v17.5.0` on that commit. A [GitHub Actions workflow](.github/workflows/release.yml) checks the header version and creates the GitHub release with one uploaded asset, `German.zip`, containing `README.md` and `German.ini`. GitHub additionally displays its automatically generated source archives. Existing bare version tags are historical and need no changes.
