@@ -48,10 +48,10 @@ jobs:
           cp Translation/German.ini release-assets/German.ini
           (
             cd release-assets
-            zip -q German.zip README.md German.ini
+            zip -q "German_$VERSION.zip" README.md German.ini
             rm README.md German.ini
           )
-          gh release create "$GITHUB_REF_NAME" "release-assets/German.zip#German $VERSION" \
+          gh release create "$GITHUB_REF_NAME" "release-assets/German_$VERSION.zip#German $VERSION" \
             --verify-tag \
             --title "German $VERSION" \
             --notes "German translations for REDCap $VERSION"
