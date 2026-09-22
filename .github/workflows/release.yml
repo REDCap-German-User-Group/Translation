@@ -34,7 +34,7 @@ jobs:
             fail "Missing REDCap version" "Translation/German.ini has no '; REDCap X.Y.Z' version header."
           [[ "$declared_version" == "$version" ]] || \
             fail "Release version mismatch" "Tag $GITHUB_REF_NAME requests REDCap $version, but Translation/German.ini declares REDCap $declared_version. Create a tag that matches the committed language file."
-          [[ -s README.md ]] || fail "Missing release file" "README.md is missing or empty."
+          [[ -s Translation/README.md ]] || fail "Missing release file" "Translation/README.md is missing or empty."
           [[ -s Translation/German.ini ]] || fail "Missing release file" "Translation/German.ini is missing or empty."
           echo "VERSION=$version" >> "$GITHUB_ENV"
       - name: Create release archive
@@ -44,7 +44,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p release-assets
-          cp README.md release-assets/README.md
+          cp Translation/README.md release-assets/README.md
           cp Translation/German.ini release-assets/German.ini
           (
             cd release-assets
