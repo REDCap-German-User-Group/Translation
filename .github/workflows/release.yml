@@ -1,0 +1,38 @@
+name: Release German translation
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check tag and language file
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Invalid release tag" >&2; exit 1; }
+          version="${GITHUB_REF_NAME#v}"
+          grep -Fxq "; REDCap $version" Translation/German.ini || { echo "German.ini version does not match the tag" >&2; exit 1; }
+          test -s README.md
+          test -s Translation/German.ini
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      - name: Create release with two assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets
+          cp README.md release-assets/README.md
+          cp Translation/German.ini release-assets/German.ini
+          gh release create "$GITHUB_REF_NAME" release-assets/README.md release-assets/German.ini \
+            --verify-tag \
+            --title "German $VERSION" \
+            --notes "German translation for REDCap $VERSION"

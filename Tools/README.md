@@ -1,5 +1,22 @@
 # Tools
 
+## fetch_language_json.php und update_language_header.php
+
+Autor: **Günther Rezniczek & ChatGPT/Codex**
+
+`fetch_language_json.php` ruft für eine REDCap-Version die öffentlichen LanguageUpdater-JSON-Endpunkte für Deutsch und Englisch ab. Das Skript prüft Sprache und Version, schreibt die im lokalen `German.ini` fehlenden englischen Strings nach `Todo/English_NEW.ini` und speichert die englischen Schlüssel temporär in `Todo/English_Keys.json`.
+
+Nach Übersetzung und Merge aktualisiert `update_language_header.php` die Version, das Datum und die Liste der in dieser REDCap-Version ungenutzten Schlüssel. Ungenutzte Übersetzungen bleiben für LTS-Versionen erhalten.
+
+```bash
+php Tools/fetch_language_json.php 17.5.0
+php Tools/update_language_header.php 17.5.0
+```
+
+Für einen anderen Host kann beim Abruf `--endpoint URL` verwendet werden. Das vollständige Verfahren steht in [TRANSLATE.md](../TRANSLATE.md).
+
+`check_translation_batch.php` prüft vor dem Merge, ob alle abgerufenen englischen Schlüssel in `German_NEW.ini` vorhanden sind und Platzhalter sowie Action Tags erhalten blieben.
+
 ## create_debug_file.php
 
 Autor: **Christof Meigen**
