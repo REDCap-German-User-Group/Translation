@@ -28,12 +28,13 @@ Run this workflow when asked, for example: **“Please execute TRANSLATE.md for 
    php Tools/check_language_file.php Translation/German.ini
    ```
 
-5. Review `git diff -- Translation/German.ini Todo/English_NEW.ini Todo/German_NEW.ini`. Stage only `Translation/German.ini` with `git add Translation/German.ini`, then review `git diff --cached -- Translation/German.ini` and the unstaged batch files. Stop with the translation staged but uncommitted so the result can be reviewed. Keep `Todo/English_NEW.ini` and `Todo/German_NEW.ini` populated and unstaged. After review, commit the finished translation. When it is ready to publish, create and push a tag such as `v17.5.0` on that commit. A [GitHub Actions workflow](.github/workflows/release.yml) checks the header version and creates the GitHub release with one uploaded asset, `German_X.Y.Z.zip`, containing `Translation/README.md` as `README.md` and `Translation/German.ini` as `German.ini`. GitHub additionally displays its automatically generated source archives; `.gitattributes` excludes all repository files from them, so the versioned release asset is the intended download. Existing bare version tags are historical and need no changes.
-
-6. After the GitHub release has completed, prepare the local submission helper and open `UPLOAD.local.md` in a Markdown viewer:
+5. Prepare the local submission helper:
 
    ```bash
    php Tools/prepare_upload.php 17.5.0
    ```
 
-   The ignored Markdown helper contains a clickable, properly encoded survey URL prefilled with the version, shared metadata from [LANGUAGE_LIBRARY.md](LANGUAGE_LIBRARY.md), and local email/site values from the ignored `UPLOAD.local.ini`. On first use, copy `UPLOAD.local.ini.example` to `UPLOAD.local.ini` and fill in both values. Complete the CAPTCHA, upload `German_17.5.0.zip`, review the values, and submit the survey manually.
+   The ignored Markdown helper contains a clickable, properly encoded survey URL prefilled with the version, shared metadata from [LANGUAGE_LIBRARY.md](LANGUAGE_LIBRARY.md), and local email/site values from the ignored `UPLOAD.local.ini`. Human maintainer only: On first use, copy `UPLOAD.local.ini.example` to `UPLOAD.local.ini` and fill in both values. Complete the CAPTCHA, upload `German_17.5.0.zip`, review the values, and submit the survey manually.
+
+6. Review `git diff -- Translation/German.ini Todo/English_NEW.ini Todo/German_NEW.ini`. Stage only `Translation/German.ini` with `git add Translation/German.ini`, then review `git diff --cached -- Translation/German.ini` and the unstaged batch files. Stop with the translation staged but uncommitted so the result can be reviewed. Keep `Todo/English_NEW.ini` and `Todo/German_NEW.ini` populated and unstaged. After review, commit the finished translation. When it is ready to publish, create and push a tag such as `v17.5.0` on that commit. A [GitHub Actions workflow](.github/workflows/release.yml) checks the header version and creates the GitHub release with one uploaded asset, `German_X.Y.Z.zip`, containing `Translation/README.md` as `README.md` and `Translation/German.ini` as `German.ini`. GitHub additionally displays its automatically generated source archives; `.gitattributes` excludes all repository files from them, so the versioned release asset is the intended download. Existing bare version tags are historical and need no changes.
+
