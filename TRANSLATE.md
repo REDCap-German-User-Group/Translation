@@ -19,6 +19,8 @@ Run this workflow when asked, for example: **“Please execute TRANSLATE.md for 
    php Tools/merge_language_file.php Todo/German_NEW.ini Translation/German.ini
    ```
 
+   Keep `Todo/English_NEW.ini` and `Todo/German_NEW.ini` populated after the merge. They are review aids and should remain unstaged.
+
 4. Set the version, local date, and unused-key comment in the full German file. The tool computes unused keys from the endpoint's English key set and the **local** German file. It retains all unused translations for older REDCap branches:
 
    ```bash
@@ -26,7 +28,7 @@ Run this workflow when asked, for example: **“Please execute TRANSLATE.md for 
    php Tools/check_language_file.php Translation/German.ini
    ```
 
-5. Review `git diff -- Translation/German.ini Todo/English_NEW.ini Todo/German_NEW.ini`. Commit the finished translation. When it is ready to publish, create and push a tag such as `v17.5.0` on that commit. A [GitHub Actions workflow](.github/workflows/release.yml) checks the header version and creates the GitHub release with one uploaded asset, `German_X.Y.Z.zip`, containing `Translation/README.md` as `README.md` and `Translation/German.ini` as `German.ini`. GitHub additionally displays its automatically generated source archives; `.gitattributes` excludes all repository files from them, so the versioned release asset is the intended download. Existing bare version tags are historical and need no changes.
+5. Review `git diff -- Translation/German.ini Todo/English_NEW.ini Todo/German_NEW.ini`. Stage only `Translation/German.ini` with `git add Translation/German.ini`, then review `git diff --cached -- Translation/German.ini` and the unstaged batch files. Stop with the translation staged but uncommitted so the result can be reviewed. Keep `Todo/English_NEW.ini` and `Todo/German_NEW.ini` populated and unstaged. After review, commit the finished translation. When it is ready to publish, create and push a tag such as `v17.5.0` on that commit. A [GitHub Actions workflow](.github/workflows/release.yml) checks the header version and creates the GitHub release with one uploaded asset, `German_X.Y.Z.zip`, containing `Translation/README.md` as `README.md` and `Translation/German.ini` as `German.ini`. GitHub additionally displays its automatically generated source archives; `.gitattributes` excludes all repository files from them, so the versioned release asset is the intended download. Existing bare version tags are historical and need no changes.
 
 6. After the GitHub release has completed, prepare the local submission helper and open `UPLOAD.local.md` in a Markdown viewer:
 
